@@ -1,0 +1,10 @@
+table {
+    width: 100%;
+  }
+
+ .search {
+    flex: auto;
+    width: 600px;
+    padding: 50px;
+    height: 10px;    
+}

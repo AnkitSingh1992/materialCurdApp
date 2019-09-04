@@ -12,11 +12,12 @@
                     <mat-error>Invalid email address</mat-error>
                 </mat-form-field>
                 <mat-form-field>
-                    <input formControlName="mobile" matInput placeholder="mobile*">
+                    <input formControlName="mobile" matInput placeholder="mobile*">   
+                    <mat-error>This field is required</mat-error>
+                    <!-- <mat-error *ngIf="form.controls['mobile'].errors?.minlength">Minimun 8 characters needed
                     <mat-error *ngIf="form.controls['mobile'].errors.required">This field is mandatory
                     </mat-error>
-                    <mat-error *ngIf="form.controls['mobile'].errors?.minlength">Minimun 8 characters needed
-                    </mat-error>
+                    </mat-error>                  -->
                 </mat-form-field>
                 <mat-form-field>
                     <input formControlName="city" matInput placeholder="city">
