@@ -1,14 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-// import { MatPaginator } from '@angular/material/paginator';
-// import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { EmployeeService } from "../shared/employee.service";
 export interface PeriodicElement {
   name: string;
   position: number;
   weight: number;
   symbol: string;
 }
-
 const ELEMENT_DATA: PeriodicElement[] = [
   {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
   {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
@@ -58,12 +56,13 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class EmployeesComponent implements OnInit {
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource<any>(ELEMENT_DATA);
+  dataSource: MatTableDataSource<any>;
   @ViewChild(MatPaginator,{static:true}) paginator: MatPaginator;
   @ViewChild(MatSort,{static : true}) sort:MatSort;
-  constructor() { }
+  constructor(private service: EmployeeService) { }
 
   ngOnInit() {
+    this.dataSource = new MatTableDataSource(ELEMENT_DATA);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
  }
@@ -72,5 +71,9 @@ export class EmployeesComponent implements OnInit {
      if(this.dataSource.paginator){
        this.dataSource.paginator.firstPage();
      }
+  }
+
+  exportAsXLSX():void {
+    this.service.exportAsExcelFile(ELEMENT_DATA, 'sample');
   }
 }

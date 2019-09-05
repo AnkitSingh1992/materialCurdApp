@@ -6,7 +6,14 @@
     </mat-toolbar>
 </div>
  <!-- <app-employee></app-employee> -->
+ <div>
+ <p>
+  Exporting an excel file of type .xslx !!!
+</p>
+<p>Export as XLSX by clicking the below button</p>
 
+<button (click)="exportAsXLSX()">EXCEL</button>
+</div>
   <mat-form-field class = "search">
     <input  matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
   </mat-form-field> 
@@ -44,4 +51,4 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-  <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+  <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
