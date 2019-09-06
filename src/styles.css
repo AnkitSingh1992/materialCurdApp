@@ -29,3 +29,21 @@ form.normal-form{
 .button-row button{
      margin:  5px;
 }
+
+snack-bar-container.success{
+    background-color: green;
+    color: blanchedalmond
+}
+snack-bar-container.notification simple-snack-bar{
+    font-size:  18px !important;
+    font-weight: bold
+}
+
+.hide{
+ display: none
+}
+
+mat-footer-row mat-footer-cell{
+        justify-content:  center;
+        font-style:  italic
+    }
