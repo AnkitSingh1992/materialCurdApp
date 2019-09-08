@@ -4,7 +4,7 @@ import {BrowserAnimationsModule}  from '@angular/platform-browser/animations';
 
 import { NgModule } from '@angular/core';
 import { MaterialModule } from "./material/material.module"
-import { ReactiveFormsModule } from "@angular/forms"
+import { ReactiveFormsModule,FormsModule } from "@angular/forms"
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,7 +24,8 @@ import { EmployeeService } from './shared/employee.service'
     BrowserAnimationsModule,
     AppRoutingModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [
     EmployeeService

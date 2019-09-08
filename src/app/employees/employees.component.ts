@@ -8,6 +8,7 @@ import { EmployeeService } from "../shared/employee.service";
 })
 export class EmployeesComponent implements OnInit {
   employeeList :any;
+  searchKey:string;
   displayedColumns: string[] = ['id','fullName', 'email', 'mobile', 'department','actions'];
   dataSource: MatTableDataSource<any>;
   @ViewChild(MatPaginator,{static:true}) paginator: MatPaginator;
@@ -20,8 +21,8 @@ export class EmployeesComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
  }
-  applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+  applyFilter() {
+    this.dataSource.filter = this.searchKey.trim().toLowerCase();
      if(this.dataSource.paginator){
        this.dataSource.paginator.firstPage();
      }
@@ -30,4 +31,8 @@ export class EmployeesComponent implements OnInit {
   exportAsXLSX():void {
     this.service.exportAsExcelFile(this.employeeList, 'employeeList');
   }
+
+  onSearchClear(){
+    this.searchKey = "";
+    this.applyFilter();  }
 }

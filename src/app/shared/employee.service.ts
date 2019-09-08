@@ -35,7 +35,6 @@ export class EmployeeService {
     });
     FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
   }
-
   public saveEmployee(emp): any {
     this.employee.push(emp);
     return emp;

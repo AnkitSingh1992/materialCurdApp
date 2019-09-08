@@ -5,19 +5,22 @@
     <span class="fill-remaining-space"></span>
   </mat-toolbar>
 </div>
-<app-employee></app-employee>
-<div>
-  <p>
-    Exporting an excel file of type .xslx !!!
-  </p>
-  <p>Export as XLSX by clicking the below button</p>
-
-  <button (click)="exportAsXLSX()">EXCEL</button>
+<!-- <app-employee></app-employee> -->
+<div class="search-div">
+  <button mat-raised-button (click)="exportAsXLSX()">
+    <mat-icon>assignment_returned</mat-icon>
+  </button>
+  <button  mat-raised-button>
+    <mat-icon>add</mat-icon>
+  </button>
+  <mat-form-field class="search-form-field" floatLabel ="never">
+    <!-- <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter"> -->
+    <input matInput [(ngModel)]="searchKey" placeholder="Search" autocomplete="off" (keyup)="applyFilter()">
+    <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchKey" (click)="onSearchClear()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
 </div>
-<mat-form-field class="search">
-  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-</mat-form-field>
-
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
@@ -64,14 +67,14 @@
   </ng-container>
 
   <ng-container matColumnDef="noData">
-      <mat-footer-cell *matFooterCellDef colspan="6">
-        No data
-      </mat-footer-cell>
-    </ng-container>
+    <mat-footer-cell *matFooterCellDef colspan="6">
+      No data
+    </mat-footer-cell>
+  </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':dataSource!=null}"></mat-footer-row>
-  <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide':dataSource!=null &&  dataSource.data.length==0}"></mat-footer-row>
+  <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide':dataSource.data.length>0}"></mat-footer-row>
 </table>
 <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
